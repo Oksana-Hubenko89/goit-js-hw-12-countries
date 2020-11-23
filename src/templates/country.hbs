@@ -1,11 +1,11 @@
 {{#each this}}
 <div class="card">
     <div class="card-body">
-        <h1 class="card-title">{{name}}</h1>
-        <h3 class="cart-text">Capital: {{capital}}</h3>
-        <h3 class="cart-text">Population: {{population}}</h3>
+        <h1>{{name}}</h1>
+        <h3 class="card-title">Capital:</h3><span class="cart-text">{{capital}}</span>
+        <h3 class="card-title"> Population:</h3><span class="cart-text"> {{population}}</span>
         <ul class="languages-group">
-            <p class="cart-text">Languages:</p>
+            <h3 class="cart-title">Languages:</h3>
             {{#each languages}}
             <li class="cart-text">{{name}}</li>
             {{/each}}
