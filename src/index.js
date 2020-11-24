@@ -3,12 +3,9 @@ import cardCountry from './templates/country.hbs';
 import cardCountries from './templates/countries.hbs';
 import getRefs from './get-refs';
 import API from './fetchCountries';
-//import { searcheError } from './pnotify';
-
+import { searcheError } from './pnotify';
 import { error } from '@pnotify/core';
-
 import '@pnotify/core/dist/BrightTheme.css';
-import { info } from 'autoprefixer';
 
 const debounce = require('lodash.debounce');
 const refs = getRefs();
@@ -22,7 +19,7 @@ function onSearch(event) {
  event.preventDefault();
     
   API.fetchCountries(event.target.value)
-    .then(estimateResult).catch(console.log(error));   
+    .then(estimateResult);   
   
 }
 
@@ -36,20 +33,13 @@ function renderCountriesCardListr(countries) {
   refs.cardContainer.innerHTML = markupL;
 }
 
-function estimateResult(answer) {
- 
-  if (answer.status === 404) {
-        return error(
-          'The country for your request was not found.Please try again'
-        );
-      }
+function estimateResult(answer) { 
   if (answer.length > 10)
     return error(
-      'Too many mutches found.Please enter a more specific query!');
+      'Too many mutches found.Please enter a more specific query!') & console.log('massage error');
   if (answer.length === 1)
     return renderCountriesCard(answer);
   if (answer.length > 1)
     return renderCountriesCardListr(answer);
-  
-}
+  }
 
