@@ -9,7 +9,6 @@ import '@pnotify/core/dist/BrightTheme.css';
 
 const debounce = require('lodash.debounce');
 const refs = getRefs();
-
 const debounceSearch = debounce(onSearch, 500);
 
 refs.searchForm.addEventListener('input',debounceSearch) ;
@@ -21,7 +20,6 @@ function onSearch(event) {
   API.fetchCountries(event.target.value)
     .then(estimateResult)
     .catch(error => console.log(error));   
-  
 }
 
 function renderCountriesCard(countries) {
@@ -42,5 +40,8 @@ function estimateResult(countries) {
     return renderCountriesCard(countries);
   if (countries.length > 1)
     return renderCountriesCardListr(countries);
+  if (countries.status === 404)
+    return error(
+      'Country not found. Please enter name country!') & console.log('massage error');
   }
 
