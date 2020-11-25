@@ -19,7 +19,8 @@ function onSearch(event) {
  event.preventDefault();
     
   API.fetchCountries(event.target.value)
-    .then(estimateResult);   
+    .then(estimateResult)
+    .catch(error => console.log(error));   
   
 }
 
