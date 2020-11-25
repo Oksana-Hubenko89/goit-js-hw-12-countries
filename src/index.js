@@ -33,13 +33,13 @@ function renderCountriesCardListr(countries) {
   refs.cardContainer.innerHTML = markupL;
 }
 
-function estimateResult(answer) { 
-  if (answer.length > 10)
+function estimateResult(countries) { 
+  if (countries.length > 10)
     return error(
       'Too many mutches found.Please enter a more specific query!') & console.log('massage error');
-  if (answer.length === 1)
-    return renderCountriesCard(answer);
-  if (answer.length > 1)
-    return renderCountriesCardListr(answer);
+  if (countries.length === 1)
+    return renderCountriesCard(countries);
+  if (countries.length > 1)
+    return renderCountriesCardListr(countries);
   }
 
