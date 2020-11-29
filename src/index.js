@@ -12,25 +12,25 @@ const refs = getRefs();
 const debounceSearch = debounce(onSearch, 500);
 
 refs.searchForm.addEventListener('input',debounceSearch) ;
-
-
+import { defaults } from '@pnotify/core';
+defaults.delay = 100;
 function onSearch(event) {
  event.preventDefault();
-    
+ clearContainer() ; 
   API.fetchCountries(event.target.value)
     .then(estimateResult)
     .catch(error => console.log(error));   
 }
 
-function renderCountriesCard(countries) {
- const markup = cardCountry(countries);
-  refs.cardContainer.innerHTML = markup;
-}
+// function renderCountriesCard(countries) {
+//  const markup = cardCountry(countries);
+//   refs.cardContainer.innerHTML = markup;
+// }
 
-function renderCountriesCardListr(countries) {
- const markupL = cardCountries(countries);
-  refs.cardContainer.innerHTML = markupL;
-}
+// function renderCountriesCardListr(countries) {
+//  const markupL = cardCountries(countries);
+//   refs.cardContainer.innerHTML = markupL;
+// }
 
 function estimateResult(countries) { 
   if (countries.length > 10)
@@ -45,3 +45,14 @@ function estimateResult(countries) {
       'Country not found. Please enter name country!') & console.log('massage error');
   }
 
+  function clearContainer() {
+    refs.cardContainer.innerHTML = '';
+  }
+
+  function renderCountriesCardListr(countries) {
+    refs.cardContainer.insertAdjacentHTML('beforeend',cardCountries(countries));
+   }
+
+   function renderCountriesCard(countries) {
+    refs.cardContainer.insertAdjacentHTML('beforeend',cardCountry(countries));
+    }

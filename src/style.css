@@ -52,3 +52,7 @@ h3,ul{
   display: flex;
   justify-content: center;
 }
+.form-control{  
+  text-align: center;
+}
+
